@@ -1,0 +1,16 @@
+"""
+# 兰亭序所属的专辑是？
+MATCH (a:作品)-[:所属专辑]->(b:专辑) 
+WHERE a.value='兰亭序'
+RETURN b.name AS name;
+
+#龙卷风的作词人是？
+MATCH (a:作品)-[:作词]->(b:人物) 
+WHERE a.value='龙卷风'
+RETURN b.name AS name;
+
+#演唱千山万水的歌手是?
+MATCH (a:作品)-[:歌手]->(b:人物) 
+WHERE a.value='千山万水'
+RETURN b.name AS name;
+"""

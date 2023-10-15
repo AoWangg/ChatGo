@@ -66,7 +66,11 @@ export default function Home() {
     const transaction = await contract.createMarketSale(nft.tokenId, {
       value: price
     })
-    await downloadNFT(nft);
+    
+    await downloadNFT(nft);    
+    await axios.post('/api/writeFile', { description: nft.description });
+    console.log('描述已写入文件！');
+    
     await transaction.wait()
     loadNFTs()
   }

@@ -15,50 +15,15 @@ from typing import Dict, List, Any
 
 from logger import logger
 
-examples = """
-# 山西都有哪些上市公司？
-MATCH p0=(n0:股票)-[r0:地域]->(n1:地域) WHERE n1.value='山西' 
-RETURN DISTINCT n0 AS n4 LIMIT 10;
+with open('examples.txt', 'r') as file:
+    examples = file.read()
 
-
-# 建筑工程行业有多少家上市公司？
-MATCH p0=(n0:股票)-[r0:所属行业]->(n1:行业) 
-WHERE n1.value='建筑工程'
-RETURN COUNT(DISTINCT n0) AS n4;
-
-# 火力发电行业博士学历的男性高管有多少位？
-MATCH 
-  p0=(n1:行业)<-[r0:所属行业]-(n0:股票)<-[r1:任职于]-(n2:高管)-[r2:性别]->(n3:性别)-[r4:别名]->(n5:性别_别名),
-  p1=(n2)-[r3:学历]->(n4:学历) 
-WHERE n1.value='火力发电' AND n5.value='男性' AND n4.value='博士'
-RETURN COUNT(DISTINCT n2) AS n3;
-
-# 在山东由硕士学历的男性高管任职的上市公司，都属于哪些行业？
-MATCH 
-  p1=(n1:`地域`)<-[:`地域`]-(n2:`股票`)<-[:`任职于`]-(n3:`高管`)-[:`性别`]->(n4:`性别`),
-  p2=(n3)-[:`学历`]->(n5:学历),
-  p3=(n2)-[:`所属行业`]->(n6:行业)
-WHERE n1.value='山东' AND n5.value='硕士' AND n4.value='M'
-RETURN DISTINCT n6.value AS hy;
-
-# 2023年三月六日上市的股票有哪些？
-MATCH p0=(n0:股票)-[r0:上市日期]->(n1:上市日期) 
-WHERE (n1.value>=20230306 AND n1.value<=20230306) 
-RETURN DISTINCT n0 AS n4 LIMIT 10;
-
-# 刘卫国是哪个公司的高管？
-MATCH p0=(n0:股票)<-[r0:任职于]-(n1:高管) 
-  WHERE n1.value='刘卫国'
-RETURN DISTINCT n0 AS n4 LIMIT 10;
-"""
 
 SYSTEM_TEMPLATE = """
 您是一名助手，能够根据示例Cypher查询生成Cypher查询。
 示例Cypher查询是：\n""" + examples + """\n
 不要回复除Cypher查询以外的任何解释或任何其他信息。
 您永远不要为你的不准确回复感到抱歉，并严格根据提供的Cypher示例生成Cypher语句。
-不要提供任何无法从密码示例中推断出的Cypher语句。
-不要提供任何无法从密码示例中推断出的Cypher语句。
 不要提供任何无法从密码示例中推断出的Cypher语句。
 """
 
@@ -154,7 +119,7 @@ if __name__ == "__main__":
     chain = LLMCypherGraphChain(llm=llm, verbose=True, graph=database, memory=readonlymemory)
 
     output = chain.run(
-        "朱棣的父亲是谁"
+        "演唱兰亭序的歌手是"
     )
 
     print(output)

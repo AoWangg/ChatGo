@@ -4,9 +4,9 @@ from logger import logger
 
 
 class Neo4jDatabase:
-    def __init__(self, host: str = "neo4j+s://fdc1a9bb.databases.neo4j.io",
+    def __init__(self, host: str = "neo4j://localhost:7687",
                  user: str = "neo4j",
-                 password: str = "5p2z4GeQI1hA-0ffmnfVCmOuh2iwK4z87msULPm2hH4"):
+                 password: str = "aowang"):
         """Initialize the movie database"""
         self.driver = GraphDatabase.driver(host, auth=(user, password))
         print('driver sucess'+host)

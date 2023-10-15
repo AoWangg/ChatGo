@@ -9,7 +9,6 @@ from langchain.agents import AgentType
 from env import getEnv
 from cypher_tool import LLMCypherGraphChain
 
-
 class GraphAgent(AgentExecutor):
     """Graph agent"""
 
@@ -21,8 +20,11 @@ class GraphAgent(AgentExecutor):
     def initialize(cls, graph, model_name, *args, **kwargs):
         if model_name in ['gpt-3.5-turbo', 'gpt-4']:
             llm = ChatOpenAI(temperature=0, model_name=model_name, openai_api_key=getEnv('OPENAI_KEY'))
+
+        
         else:
             raise Exception(f"Model {model_name} is currently not supported")
+        
 
         memory = ConversationBufferMemory(
             memory_key="chat_history", return_messages=True)
