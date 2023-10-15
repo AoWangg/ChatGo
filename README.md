@@ -1,6 +1,6 @@
 # ****ChatGo是一款基于BigDl-LLM和LangChain的Web服务。结合区块链技术，其可以实现针对知识图谱的问答，实现让个人拥有自己的“专用大模型”****
 
-### **ChatGo分为后端（Python）、链端（Hardhat）、图谱端（neoj4）、前端（React），此文档将按照【后端—链端—图谱端—前端】的顺序介绍如何部署ChatGo**
+### **ChatGo分为后端（Python）、链端（Hardhat）、图谱端（neo4j）、前端（React），此文档将按照【后端—链端—图谱端—前端】的顺序介绍如何部署ChatGo**
 
 # 一、后端部分
 
