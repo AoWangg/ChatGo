@@ -7,6 +7,7 @@
 
 ### **2. 基于以太坊区块链的专用大模型流通交易**
 ![image](https://github.com/AAooWW/ChatGo/blob/main/public/%E5%9B%BE%E8%B0%B1%E4%B8%8A%E4%BC%A0.gif)
+![image](https://github.com/AAooWW/ChatGo/blob/main/public/%E4%BA%A4%E6%98%93.gif)
 
 ### **ChatGo分为后端（Python）、链端（Hardhat）、图谱端（neo4j）、前端（React），此文档将按照【后端—链端—图谱端—前端】的顺序介绍如何部署ChatGo**
 
