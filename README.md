@@ -4,6 +4,8 @@
 1. 基于BigDL-LLM和LangChain的知识图谱对话
 ![image](https://github.com/AAooWW/ChatGo/blob/main/public/%E5%AF%B9%E8%AF%9D.gif)
 
+
+
 1. 基于以太坊区块链的专用大模型流通交易
 ![image](https://github.com/AAooWW/ChatGo/blob/main/public/%E5%9B%BE%E8%B0%B1%E4%B8%8A%E4%BC%A0.gif)
 
