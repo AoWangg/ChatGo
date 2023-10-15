@@ -20,7 +20,7 @@ export default function CreateItem() {
   const [formInput, updateFormInput] = useState({ price: '', name: '', description: '' })
   const router = useRouter()
 
-  async function onChange(e) {
+  async function onChange(e) {             //上传文件到IPFS，返回文件url存储在的fileurl中
     const file = e.target.files[0];
     const formData = new FormData();
     formData.append('file', file);
@@ -29,8 +29,6 @@ export default function CreateItem() {
       const added = await axios.post('https://api.pinata.cloud/pinning/pinFileToIPFS', formData, {
         headers: {
           'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
-          // 'pinata_api_key': process.env.NEXT_PUBLIC_PINATA_CLOUD_API_KEY,
-          // 'pinata_secret_api_key': process.env.NEXT_PUBLIC_PINATA_CLOUD_API_SECRET
           'pinata_api_key': apiKey,
           'pinata_secret_api_key': apiSecret
         }
@@ -42,12 +40,12 @@ export default function CreateItem() {
       console.log('Error uploading file: ', error)
     }
   }
-  async function uploadToIPFS() {
+  async function uploadToIPFS() {           //上传文件，返回文件的url
     const { name, description, price } = formInput
     if (!name || !description || !price || !fileUrl) return
     /* first, upload to IPFS */
     const data = JSON.stringify({
-      name, description, image: fileUrl
+      name, description, kg: fileUrl
     });
 
     try {
@@ -67,7 +65,7 @@ export default function CreateItem() {
     }
   }
 
-  async function listNFTForSale() {
+  async function listNFTForSale() {                    //创建NFT并上架出售
     const url = await uploadToIPFS()
     const web3Modal = new Web3Modal()
     const connection = await web3Modal.connect()
@@ -111,11 +109,11 @@ export default function CreateItem() {
         />
         {
           fileUrl && (
-            <Image className="rounded mt-4" width={500} height={500} src={fileUrl} />
+            <Image className="rounded mt-4" width={200} height={500} src = "/kg.png" />
           )
         }
-        <button onClick={listNFTForSale} className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg">
-          Create NFT
+        <button onClick={listNFTForSale} className="font-bold mt-4 bg-black text-white rounded p-4 shadow-lg">
+          Create 
         </button>
       </div>
     </div>

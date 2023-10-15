@@ -14,31 +14,27 @@ const rpcEndpointUrl = "http://127.0.0.1:8545";
 //const rpcEndpointUrl = "https://rpc-mumbai.maticvigil.com";
 
 export default function Home() {
-  const [nfts, setNfts] = useState([])
-  const [loadingState, setLoadingState] = useState('not-loaded')
+  const [nfts, setNfts] = useState([])  //存储从智能合约中获取的NFT数据
+  const [loadingState, setLoadingState] = useState('not-loaded')  //跟踪数据状态
   useEffect(() => {
     loadNFTs()
   }, [])
+
   async function loadNFTs() {
-    /* create a generic provider and query for unsold market items */
     const provider = new ethers.providers.JsonRpcProvider(rpcEndpointUrl);
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi, provider)
     const data = await contract.fetchMarketItems()
 
-    /*
-    *  map over items returned from smart contract and format 
-    *  them as well as fetch their token metadata
-    */
     const items = await Promise.all(data.map(async i => {
       const tokenUri = await contract.tokenURI(i.tokenId)
-      const meta = await axios.get(`/api/proxy?url=${encodeURIComponent(tokenUri)}`);
+      const meta = await axios.get(`/api/proxy?url=${encodeURIComponent(tokenUri)}`);  //发送HTTP请求获取NFT的元数据
       let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
       let item = {
         price,
         tokenId: i.tokenId.toNumber(),
         seller: i.seller,
         owner: i.owner,
-        image: meta.data.image,
+        kg: meta.data.kg,
         name: meta.data.name,
         description: meta.data.description,
       }
@@ -47,22 +43,34 @@ export default function Home() {
     setNfts(items)
     setLoadingState('loaded')
   }
+
+  async function downloadNFT(nft) {
+    const response = await fetch(nft.kg);
+    const blob = await response.blob();
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(blob);
+    downloadLink.download = `${nft.name}.dump`;
+    downloadLink.click();
+  }
+
   async function buyNft(nft) {
-    /* needs the user to sign the transaction, so will use Web3Provider and sign it */
+
     const web3Modal = new Web3Modal()
     const connection = await web3Modal.connect()
     const provider = new ethers.providers.Web3Provider(connection)
     const signer = provider.getSigner()
     const contract = new ethers.Contract(marketplaceAddress, NFTMarketplace.abi, signer)
 
-    /* user will be prompted to pay the asking proces to complete the transaction */
+    //交易实例
     const price = ethers.utils.parseUnits(nft.price.toString(), 'ether')
     const transaction = await contract.createMarketSale(nft.tokenId, {
       value: price
     })
+    await downloadNFT(nft);
     await transaction.wait()
     loadNFTs()
   }
+
   if (loadingState === 'loaded' && !nfts.length) return (<h1 className="px-20 py-10 text-3xl">No items in marketplace</h1>)
   return (
     <div className="flex justify-center">
@@ -71,7 +79,7 @@ export default function Home() {
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <Image src={nft.image} width={500} height={500} />
+                <Image src= "/kg.png" width={500} height={500} />
                 <div className="p-4">
                   <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
                   <div style={{ height: '70px', overflow: 'hidden' }}>
@@ -80,7 +88,7 @@ export default function Home() {
                 </div>
                 <div className="p-4 bg-black">
                   <p className="text-2xl font-bold text-white">{nft.price} ETH</p>
-                  <button className="mt-4 w-full bg-pink-500 text-white font-bold py-2 px-12 rounded" onClick={() => buyNft(nft)}>Buy</button>
+                  <button style={{ backgroundColor: 'rgb(101, 175, 80)', color: 'white', fontWeight: 'bold', paddingTop: '2px', paddingBottom: '2px', paddingLeft: '12px', paddingRight: '12px', borderRadius: '4px', width: '100%', marginTop: '4px' }} onClick={() => buyNft(nft)}>Buy</button>
                 </div>
               </div>
             ))

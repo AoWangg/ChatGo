@@ -18,6 +18,16 @@ function MyApp({ Component, pageProps }) {
               Dashboard
             </a>
           </Link>
+          <Link href="/my-nfts">
+            <a className="mr-6 text-black-500">
+              MyLLM
+            </a>
+          </Link>
+          <Link href="/create-llm">
+            <a className="mr-6 text-black-500">
+              CreatLLM
+            </a>
+          </Link>
           <Link href="/MyChat">
             <a className="mr-6 text-black-500">
               MyChat

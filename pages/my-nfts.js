@@ -18,6 +18,7 @@ export default function MyAssets() {
   useEffect(() => {
     loadNFTs()
   }, [])
+
   async function loadNFTs() {
     const web3Modal = new Web3Modal({
       network: "mainnet",
@@ -39,18 +40,27 @@ export default function MyAssets() {
         tokenId: i.tokenId.toNumber(),
         seller: i.seller,
         owner: i.owner,
-        image: meta.data.image,
-        tokenURI
+        kg: meta.data.kg,
+        tokenURI,
+        name: meta.data.name,
+        description: meta.data.description
       }
       return item
     }))
     setNfts(items)
     setLoadingState('loaded') 
   }
-  function listNFT(nft) {
+
+  function Resell(nft) {
     console.log('nft:', nft)
     router.push(`/resell-nft?id=${nft.tokenId}&tokenURI=${nft.tokenURI}`)
   }
+
+  function LoadLLM(nft) {
+    console.log('nft:', nft)
+    router.push(`/resell-nft?id=${nft.tokenId}&tokenURI=${nft.tokenURI}`)
+  }
+
   if (loadingState === 'loaded' && !nfts.length) return (<h1 className="py-10 px-20 text-3xl">No NFTs owned</h1>)
   return (
     <div className="flex justify-center">
@@ -59,10 +69,17 @@ export default function MyAssets() {
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <Image src={nft.image} width={500} height={500} className="rounded" />
+                <Image src= "/kg.png" width={500} height={500} />
+                <div className="p-4">
+                  <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
+                  <div style={{ height: '70px', overflow: 'hidden' }}>
+                    <p className="text-gray-400">{nft.description}</p>
+                  </div>
+                </div>
                 <div className="p-4 bg-black">
-                  <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
-                  <button className="mt-4 w-full bg-pink-500 text-white font-bold py-2 px-12 rounded" onClick={() => listNFT(nft)}>List</button>
+                  <p className="text-2xl font-bold text-white">{nft.price} ETH</p>
+                  <button style={{ backgroundColor: 'rgb(101, 175, 80)', color: 'white', fontWeight: 'bold', paddingTop: '2px', paddingBottom: '2px', paddingLeft: '12px', paddingRight: '12px', borderRadius: '4px', width: '100%', marginTop: '4px' }} onClick={() => Resell(nft)}>Resell</button>
+                  <button style={{ backgroundColor: 'rgb(101, 175, 80)', color: 'white', fontWeight: 'bold', paddingTop: '2px', paddingBottom: '2px', paddingLeft: '12px', paddingRight: '12px', borderRadius: '4px', width: '100%', marginTop: '4px' }} onClick={() => LoadLLM(nft)}>LoadLLM</button>
                 </div>
               </div>
             ))
