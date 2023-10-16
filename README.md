@@ -1,11 +1,11 @@
-# ****ChatGo是一款基于BigDl-LLM和LangChain的Web服务。结合区块链技术，其可以实现针对知识图谱的问答，让个人拥有自己的“专用大模型”****
+# ****ChatGo是一款基于BigDl-LLM和LangChain的Web服务。结合区块链技术，其可以实现针对知识图谱的问答，让个人拥有自己的专属聊天机器人****
 
 ### **ChatGo的核心功能是**
 ### **1. 基于BigDL-LLM和LangChain的知识图谱对话**
 ![image](https://github.com/AAooWW/ChatGo/blob/main/public/%E5%AF%B9%E8%AF%9D.gif)
 
 
-### **2. 基于以太坊区块链的专用大模型流通交易**
+### **2. 基于以太坊区块链的专属聊天机器人流通交易**
 ![image](https://github.com/AAooWW/ChatGo/blob/main/public/%E5%9B%BE%E8%B0%B1%E4%B8%8A%E4%BC%A0.gif)
 ![image](https://github.com/AAooWW/ChatGo/blob/main/public/%E4%BA%A4%E6%98%93.gif)
 
