@@ -27,13 +27,13 @@ pip install fastapi
 pip install uvicorn
 ```
 
-1. 其次完成环境配置，设置node4j数据库等信息，我们提供.env的实例，可以照此填写
+2. 其次完成环境配置，设置node4j数据库等信息，我们提供.env的实例，可以照此填写
 
 ```jsx
 cp .env.example .env
 ```
 
-1. 环境变量设置完后，即可开启后端，进入backend/src/中运行
+3. 环境变量设置完后，即可开启后端，进入backend/src/中运行
 
 ```jsx
 python3 main.py
@@ -53,7 +53,7 @@ npm install
 npx hardhat node
 ```
 
-1. 在本地网络运行时，在单独的终端窗口中将合约部署到本地网络
+2. 在本地网络运行时，在单独的终端窗口中将合约部署到本地网络
 
 ```
 npx hardhat run scripts/deploy.js --network localhost
@@ -70,14 +70,14 @@ npx hardhat run scripts/deploy.js --network localhost
 sudo apt install openjdk-11-jre-headless
 ```
 
-1. 下载neo4j 4.2.26版本
-2. 解压下载的安装包：
+3. 下载neo4j 4.2.26版本
+4. 解压下载的安装包：
 
 ```jsx
 tar -axvf neo4j-community-4.4.26-unix.tar.gz
 ```
 
-1. 进入neo4j的根目录，启动neo4j
+5. 进入neo4j的根目录，启动neo4j
 
 ```jsx
 ./bin/neo4j start
@@ -91,7 +91,7 @@ tar -axvf neo4j-community-4.4.26-unix.tar.gz
 ./bin/neo4j stop
 ```
 
-1. 修改配置文件，进入 gedit conf\neo4j.conf，第9行下面填加：
+2. 修改配置文件，进入 gedit conf\neo4j.conf，第9行下面填加：
 
 ```jsx
 # The name of the default database
@@ -99,7 +99,7 @@ tar -axvf neo4j-community-4.4.26-unix.tar.gz
 dbms.active_database=ming.db    \\<数据库名字>.db
 ```
 
-1. 进入bin文件夹中，运行
+3. 进入bin文件夹中，运行
 
 ```jsx
 neo4j-admin load --from=<需要导入文件的地址> --database=<导入的数据库> --force
@@ -107,7 +107,7 @@ neo4j-admin load --from=<需要导入文件的地址> --database=<导入的数
 neo4j-admin load --from=/home/aowang/history-knowledge-graph-neo4j.dump --database=mingchao.db --force //例子
 ```
 
-1. 导入时版本升级报错，解决方法：在配置为文件中将 dbms.allow_upgrade=true 打开
+4. 导入时版本升级报错，解决方法：在配置为文件中将 dbms.allow_upgrade=true 打开
 
 # 四、前端部分（项目启动）
 
@@ -117,6 +117,6 @@ neo4j-admin load --from=/home/aowang/history-knowledge-graph-neo4j.dump --databa
 npm run dev
 ```
 
-1. 进入[http://localhost:3000](http://localhost:3000/)查看ChatGo
-2. 进入[http://0.0.0.0:7860/](http://0.0.0.0:7860/)查看后端响应情况
-3. 进入[http://localhost:7474](http://localhost:7474/)查看neo4j数据库情况
+2. 进入[http://localhost:3000](http://localhost:3000/)查看ChatGo
+3. 进入[http://0.0.0.0:7860/](http://0.0.0.0:7860/)查看后端响应情况
+4. 进入[http://localhost:7474](http://localhost:7474/)查看neo4j数据库情况
