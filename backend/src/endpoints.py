@@ -11,7 +11,6 @@ from run import get_result_and_thought_using_graph
 neo4j_host = getEnv("NEO4J_URL")
 neo4j_user = getEnv("NEO4J_USER")
 neo4j_password = getEnv("NEO4J_PASS")
-model_name = getEnv("MODEL_NAME")
 # build router
 router = APIRouter()
 logger = logging.getLogger(__name__)

@@ -4,11 +4,12 @@ from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory, ReadOnlySharedMemory
 from langchain.agents import initialize_agent
 from langchain.agents import AgentType
+from bigdl.llm.langchain.llms import TransformersLLM
+
 
 
 from env import getEnv
 from cypher_tool import LLMCypherGraphChain
-
 
 class GraphAgent(AgentExecutor):
     """Graph agent"""
@@ -19,10 +20,11 @@ class GraphAgent(AgentExecutor):
 
     @classmethod
     def initialize(cls, graph, model_name, *args, **kwargs):
-        if model_name in ['gpt-3.5-turbo', 'gpt-4']:
-            llm = ChatOpenAI(temperature=0, model_name=model_name, openai_api_key=getEnv('OPENAI_KEY'))
-        else:
-            raise Exception(f"Model {model_name} is currently not supported")
+        llm = TransformersLLM.from_model_id(
+        model_id="lmsys/vicuna-7b-v1.5",
+        model_kwargs={"temperature": 0, "max_length": 1024, "trust_remote_code": True},
+    )
+        
 
         memory = ConversationBufferMemory(
             memory_key="chat_history", return_messages=True)
