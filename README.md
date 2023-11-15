@@ -4,16 +4,27 @@
 * [x] [项目开发过程分享](http://t.csdnimg.cn/ENISA)
 
 ### **ChatGo的核心功能是**
-### **1. 基于BigDL-LLM和LangChain的知识图谱对话**
-![image](https://github.com/AAooWW/ChatGo/blob/main/public/%E5%AF%B9%E8%AF%9D.gif)
-
-
-### **2. 基于以太坊区块链的专属聊天机器人流通交易**
-**聊天机器人NFT铸造**
-![image](https://github.com/AAooWW/ChatGo/blob/main/public/%E5%9B%BE%E8%B0%B1%E4%B8%8A%E4%BC%A0.gif)
-
-**聊天机器人交易与载入**
-![image](https://github.com/AAooWW/ChatGo/blob/main/public/%E4%BA%A4%E6%98%93.gif)
+<table width="100%">
+  <tr>
+    <td align="center" colspan="3">核心功能</td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">
+      <a href="#"><img src="https://github.com/AAooWW/ChatGo/blob/main/public/%E8%81%8A%E5%A4%A9.gif"></a>
+    </td>
+    <td align="center" width="33%">
+      <a href="#"><img src="https://github.com/AAooWW/ChatGo/blob/main/public/NFT.gif"></a>
+    </td>
+    <td align="center" width="33%">
+      <a href="#"><img src="https://github.com/AAooWW/ChatGo/blob/main/public/NFT%E8%B4%AD%E4%B9%B0.gif"></a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="33%">基于知识图谱的对话</td>
+    <td align="center" width="33%">聊天机器人NFT铸造</td>
+    <td align="center" width="33%">聊天机器人NFT交易与载入</td>
+  </tr>
+</table>
 
 ### **ChatGo分为后端（Python）、链端（Hardhat）、图谱端（neo4j）、前端（React），此文档将按照【后端—链端—图谱端—前端】的顺序介绍如何部署ChatGo**
 
