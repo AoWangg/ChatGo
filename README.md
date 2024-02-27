@@ -2,7 +2,7 @@
 ### 推荐您访问，以获得更多信息
 * [x] [项目的介绍网站](https://aowang66.cn/index.php/chatgo/)
 * [x] [项目开发过程分享](http://t.csdnimg.cn/ENISA)
-* [x] **感谢https://github.com/ongdb-contrib/langchain2ongdb的优秀工作！！**
+* [x] **感谢 https://github.com/ongdb-contrib/langchain2ongdb**
 
 ### **ChatGo的核心功能是**
 <table width="100%">
